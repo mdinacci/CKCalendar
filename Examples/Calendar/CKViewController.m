@@ -29,8 +29,8 @@
         calendar.maximumDate = [self.dateFormatter dateFromString:@"29/07/2014"];
         calendar.shouldFillCalendar = YES;
         calendar.adaptHeightToNumberOfWeeksInMonth = NO;
-        [calendar addEventAtDate:[self.dateFormatter dateFromString:@"23/02/2013"]];
-        [calendar addEventAtDate:[self.dateFormatter dateFromString:@"06/03/2013"]];
+        [calendar addEventAtDate:[self.dateFormatter dateFromString:@"23/03/2013"]];
+        [calendar addEventAtDate:[self.dateFormatter dateFromString:@"06/04/2013"]];
 
         calendar.frame = CGRectMake(10, 10, 300, 320);
         [self.view addSubview:calendar];

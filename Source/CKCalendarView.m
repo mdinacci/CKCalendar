@@ -658,7 +658,36 @@
 
 - (BOOL)hasEventAtDate:(NSDate *)date
 {
-    return [self.events containsObject:date];
+    if ([self.events count] == 0) {
+        return NO;
+    }
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components: NSYearCalendarUnit |
+                                                         NSMonthCalendarUnit |
+                                                         NSDayCalendarUnit |
+                                                         NSHourCalendarUnit |
+                                                         NSMinuteCalendarUnit |
+                                                         NSSecondCalendarUnit
+                                               fromDate:date];
+    [components setHour:0];
+    [components setMinute:0];
+    [components setSecond:0];
+    
+    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+    [offsetComponents setHour:24];
+    
+    NSDate *startDate = [calendar dateFromComponents:components];
+    NSDate *endDate = [calendar dateByAddingComponents:offsetComponents toDate:startDate options:0];
+    
+    for (NSDate *date in self.events) {
+        // Check the given date's day is contained in the event's date day
+        if ([date laterDate:startDate] == date && [date laterDate:endDate] == endDate) {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 + (UIImage *)imageNamed:(NSString *)name withColor:(UIColor *)color {

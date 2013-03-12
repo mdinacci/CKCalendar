@@ -81,5 +81,9 @@
     self.dateLabel.text = [self.dateFormatter stringFromDate:date];
 }
 
+- (void)calendar:(CKCalendarView *)calendar didMoveToMonth:(NSDate *)date
+{
+    NSLog(@"Month changed");
+}
 
 @end

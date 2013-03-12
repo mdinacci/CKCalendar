@@ -104,6 +104,8 @@
 
 @property (nonatomic, strong) NSMutableSet *events;
 
+@property (nonatomic, strong) UIColor *defaultDateBackgroundColor;
+
 @end
 
 @implementation CKCalendarView
@@ -144,6 +146,8 @@
 @synthesize events;
 @synthesize eventColor;
 @synthesize eventColorSelected;
+
+@synthesize defaultDateBackgroundColor;
 
 - (id)init {
     return [self initWithStartDay:startSunday];
@@ -410,7 +414,8 @@
 
 - (void)setDefaultStyle {
     self.backgroundColor = UIColorFromRGB(0x393B40);
-
+    self.defaultDateBackgroundColor = UIColorFromRGB(0xF2F2F2);
+    
     [self setTitleColor:[UIColor whiteColor]];
     [self setTitleFont:[UIFont boldSystemFontOfSize:17.0]];
 
@@ -420,9 +425,8 @@
 
     [self setDateFont:[UIFont boldSystemFontOfSize:16.0f]];
     [self setDateTextColor:UIColorFromRGB(0x393B40)];
-    [self setDateBackgroundColor:UIColorFromRGB(0xF2F2F2)];
+    [self setDateBackgroundColor:self.defaultDateBackgroundColor];
     [self setDateBorderColor:UIColorFromRGB(0xDAE1E6)];
-
 
     [self setSelectedDateTextColor:UIColorFromRGB(0xF2F2F2)];
     [self setSelectedDateBackgroundColor:UIColorFromRGB(0x88B6DB)];
@@ -547,7 +551,7 @@
     }
 }
 - (UIColor *)dateBackgroundColor {
-    return (self.dateButtons.count > 0) ? ((DateButton *)[self.dateButtons lastObject]).backgroundColor : nil;
+    return self.defaultDateBackgroundColor;
 }
 
 - (void)setDateBorderColor:(UIColor *)color {

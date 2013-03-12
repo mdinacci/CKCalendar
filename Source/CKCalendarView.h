@@ -65,6 +65,12 @@ typedef int startDay;
 - (void)setDateBorderColor:(UIColor *)color;
 - (UIColor *)dateBorderColor;
 
+- (void)setEventBackgroundColor:(UIColor *)color;
+- (UIColor *)eventBackgroundColor:(UIColor *)color;
+
+- (void)setSelectedEventBackgroundColor:(UIColor *)color;
+- (UIColor *)selectedEventBackgroundColor:(UIColor *)color;
+
 @property (nonatomic, strong) UIColor *dateTextColor;
 @property (nonatomic, strong) UIColor *selectedDateTextColor;
 @property (nonatomic, strong) UIColor *selectedDateBackgroundColor;
@@ -80,8 +86,8 @@ typedef int startDay;
 - (void)removeAllEvents;
 - (BOOL)hasEventAtDate:(NSDate *)date;
 
-@property (nonatomic, strong) UIColor *eventColor;
-@property (nonatomic, strong) UIColor *eventColorSelected;
+@property (nonatomic, strong) UIColor *eventBackgroundColor;
+@property (nonatomic, strong) UIColor *selectedEventBackgroundColor;
 
 @end
 

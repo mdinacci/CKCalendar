@@ -144,8 +144,8 @@
 @synthesize adaptHeightToNumberOfWeeksInMonth = _adaptHeightToNumberOfWeeksInMonth;
 
 @synthesize events;
-@synthesize eventColor;
-@synthesize eventColorSelected;
+@synthesize eventBackgroundColor = _eventBackgroundColor;
+@synthesize selectedEventBackgroundColor = _selectedEventBackgroundColor;
 
 @synthesize defaultDateBackgroundColor;
 
@@ -325,10 +325,10 @@
         DateButton *dateButton = [self.dateButtons objectAtIndex:dateButtonPosition];
         dateButton.date = date;
         if ([self hasEventAtDate:date]) {
-            dateButton.backgroundColor = self.eventColor;
+            dateButton.backgroundColor = self.eventBackgroundColor;
             if ([self date:dateButton.date isSameDayAsDate:self.selectedDate] ||
                 [self dateIsToday:dateButton.date]) {
-                dateButton.backgroundColor = self.eventColorSelected;
+                dateButton.backgroundColor = self.selectedEventBackgroundColor;
             }
         } else if ([self date:dateButton.date isSameDayAsDate:self.selectedDate]) {
             dateButton.backgroundColor = self.selectedDateBackgroundColor;
@@ -439,8 +439,8 @@
     self.disabledDateTextColor = [UIColor lightGrayColor];
     self.disabledDateBackgroundColor = self.dateBackgroundColor;
     
-    self.eventColor = UIColorFromRGB(0xDC143C); // Crimson Red
-    self.eventColorSelected = UIColorFromRGB(0xB0171F); // Indian Red
+    self.eventBackgroundColor = UIColorFromRGB(0xDC143C); // Crimson Red
+    self.selectedEventBackgroundColor = UIColorFromRGB(0xB0171F); // Indian Red
 }
 
 - (CGRect)calculateDayCellFrame:(NSDate *)date {
@@ -559,6 +559,26 @@
 }
 - (UIColor *)dateBorderColor {
     return self.calendarContainer.backgroundColor;
+}
+
+- (void)setEventBackgroundColor:(UIColor *)color
+{
+    _eventBackgroundColor = color;
+}
+
+- (UIColor *)eventBackgroundColor:(UIColor *)color
+{
+    return _eventBackgroundColor;
+}
+
+- (void)setSelectedEventBackgroundColor:(UIColor *)color
+{
+    _selectedEventBackgroundColor = color;
+}
+
+- (UIColor *)selectedEventBackgroundColor:(UIColor *)color
+{
+    return _selectedEventBackgroundColor;
 }
 
 #pragma mark - Calendar helpers

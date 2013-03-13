@@ -146,6 +146,8 @@
 @synthesize events;
 @synthesize eventBackgroundColor = _eventBackgroundColor;
 @synthesize selectedEventBackgroundColor = _selectedEventBackgroundColor;
+@synthesize eventTextColor = _eventTextColor;
+@synthesize selectedEventTextColor = _selectedEventTextColor;
 
 @synthesize defaultDateBackgroundColor;
 
@@ -326,9 +328,13 @@
         dateButton.date = date;
         if ([self hasEventAtDate:date]) {
             dateButton.backgroundColor = self.eventBackgroundColor;
+            [dateButton setTitleColor:self.eventTextColor forState:UIControlStateNormal];
+            [dateButton setTitleColor:self.selectedEventTextColor forState:UIControlStateSelected];
             if ([self date:dateButton.date isSameDayAsDate:self.selectedDate] ||
                 [self dateIsToday:dateButton.date]) {
                 dateButton.backgroundColor = self.selectedEventBackgroundColor;
+                [dateButton setTitleColor:self.selectedEventTextColor forState:UIControlStateNormal];
+                [dateButton setTitleColor:self.eventTextColor forState:UIControlStateSelected];
             }
         } else if ([self date:dateButton.date isSameDayAsDate:self.selectedDate]) {
             dateButton.backgroundColor = self.selectedDateBackgroundColor;
@@ -441,6 +447,9 @@
     
     self.eventBackgroundColor = UIColorFromRGB(0xDC143C); // Crimson Red
     self.selectedEventBackgroundColor = UIColorFromRGB(0xB0171F); // Indian Red
+    
+    self.eventTextColor = [UIColor blackColor];
+    self.selectedEventTextColor = [UIColor whiteColor];
 }
 
 - (CGRect)calculateDayCellFrame:(NSDate *)date {
@@ -579,6 +588,26 @@
 - (UIColor *)selectedEventBackgroundColor:(UIColor *)color
 {
     return _selectedEventBackgroundColor;
+}
+
+- (UIColor *)eventTextColor
+{
+    return _eventTextColor;
+}
+
+- (UIColor *)selectedEventTextColor
+{
+    return _selectedEventTextColor;
+}
+
+- (void)setEventTextColor:(UIColor *)color
+{
+    _eventTextColor = color;
+}
+
+- (void)setSelectedEventTextColor:(UIColor *)color
+{
+    _selectedEventTextColor = color;
 }
 
 #pragma mark - Calendar helpers

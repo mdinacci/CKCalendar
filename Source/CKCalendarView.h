@@ -90,7 +90,7 @@ typedef int startDay;
 - (void)addEventAtDate:(NSDate *)date;
 - (void)removeEventAtDate:(NSDate *)date;
 - (void)removeAllEvents;
-- (BOOL)hasEventAtDate:(NSDate *)date;
+- (BOOL)calendar:(NSCalendar *)calendar hasEventAtDate:(NSDate *)date;
 
 
 @end

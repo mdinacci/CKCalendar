@@ -323,10 +323,11 @@
     
     
     NSUInteger dateButtonPosition = 0;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
     while ([date laterDate:endDate] != date) {
         DateButton *dateButton = [self.dateButtons objectAtIndex:dateButtonPosition];
         dateButton.date = date;
-        if ([self hasEventAtDate:date]) {
+        if ([self calendar:calendar hasEventAtDate:date]) {
             dateButton.backgroundColor = self.eventBackgroundColor;
             [dateButton setTitleColor:self.eventTextColor forState:UIControlStateNormal];
             [dateButton setTitleColor:self.selectedEventTextColor forState:UIControlStateSelected];
@@ -711,13 +712,12 @@
     [self.events removeAllObjects];
 }
 
-- (BOOL)hasEventAtDate:(NSDate *)date
+- (BOOL)calendar:(NSCalendar *)calendar hasEventAtDate:(NSDate *)date;
 {
     if ([self.events count] == 0) {
         return NO;
     }
     
-    NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components: NSYearCalendarUnit |
                                                          NSMonthCalendarUnit |
                                                          NSDayCalendarUnit |

@@ -152,8 +152,7 @@
 @synthesize defaultDateBackgroundColor;
 
 - (id)init {
-    NSUInteger firstDay = [[NSCalendar currentCalendar] firstWeekday];
-    return [self initWithStartDay:firstDay];
+    return [self initWithStartDay:startSunday];
 }
 
 - (id)initWithStartDay:(startDay)firstDay {
